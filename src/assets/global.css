@@ -1,0 +1,29 @@
+.m-left-auto {
+  margin-left: auto;
+}
+.m-right-auto {
+  margin-right: auto;
+}
+
+.text-left {
+  text-align: left;
+}
+
+/* padding */
+.p-medium {
+  padding: 9px;
+}
+
+/* margins */
+.m-bottom-sm {
+  margin-bottom: 9px;
+}
+
+.m-bottom-md {
+  margin-bottom: 15px;
+}
+
+/* float */
+.float-right {
+  float: right;
+}

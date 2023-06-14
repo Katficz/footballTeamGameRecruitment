@@ -1,3 +1,6 @@
 {
-  "message": "hello i18n !!"
+  "pageTitles": {
+    "internsList": "User List",
+    "addIntern": "Add user"
+  }
 }

@@ -1,16 +1,17 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import InternsListPage from "../modules/interns/pages/InternsListPage.vue";
+import AddEditInternPage from "../modules/interns/pages/AddEditInternPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
+    path: "/lista",
     name: "InternsList",
-    component: HomeView,
+    component: InternsListPage,
   },
   {
-    path: "/",
+    path: "/dodaj",
     name: "PreviewOneIntern",
-    component: HomeView,
+    component: AddEditInternPage,
   },
 ];
 
