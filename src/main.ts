@@ -1,3 +1,6 @@
+import "@babel/polyfill";
+import "mutationobserver-shim";
+import "./plugins/bootstrap-vue";
 //store
 import { createPinia } from "pinia";
 
