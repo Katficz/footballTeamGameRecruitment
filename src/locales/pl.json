@@ -2,5 +2,17 @@
   "pageTitles": {
     "internsList": "User List",
     "addIntern": "Add user"
+  },
+  "usersList": {
+    "fullName": "Full Name",
+    "action": "Action",
+    "searchForUsers": "Search for users...",
+    "addUser": "Add User"
+  },
+  "addEditUser": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "updateDetails": "Update Details",
+    "changePhoto": "Change Photo"
   }
 }

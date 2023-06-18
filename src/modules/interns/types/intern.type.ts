@@ -5,3 +5,11 @@ declare interface Intern {
   last_name: string;
   avatar: string;
 }
+
+declare interface InternsListApiResponse {
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
+  data: Intern[];
+}

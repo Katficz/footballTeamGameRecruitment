@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import InternsListPage from "../modules/interns/pages/InternsListPage.vue";
+import InternsListPage from "../modules/interns/pages/internsList/InternsListPage.vue";
 import AddEditInternPage from "../modules/interns/pages/AddEditInternPage.vue";
 
 const routes: Array<RouteRecordRaw> = [

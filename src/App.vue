@@ -9,6 +9,8 @@
 </template>
 
 <style lang="scss">
+$layout-breakpoint-small: 500px;
+
 body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -21,7 +23,9 @@ body {
   width: 80vw;
   height: 80vh;
   margin: auto;
-  border: 3px solid green;
+  @media (max-width: $layout-breakpoint-small) {
+    width: 95vw;
+  }
 }
 
 nav {
