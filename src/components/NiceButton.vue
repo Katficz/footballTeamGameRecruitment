@@ -1,5 +1,5 @@
 <template>
-  <button class="add-button" @click="$emit('add')">
+  <button class="add-button" @click="$emit('click')">
     <font-awesome-icon data-test="icon" v-if="icon?.length != 0" :icon="icon" />
     {{ text }}
   </button>
@@ -21,6 +21,7 @@ export default defineComponent({
     },
   },
   components: {},
+  emit: ["click"],
   setup() {
     return {};
   },

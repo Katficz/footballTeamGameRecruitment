@@ -27,7 +27,8 @@
         </div>
         <div class="button-wrapper">
           <nice-button
-            class="save-button save-button"
+            data-test="save-button"
+            class="save-button"
             @click="handleSave"
             :text="
               intern.id
@@ -44,6 +45,7 @@
         </div>
         <div class="avatar-input-wrapper">
           <input
+            data-test="avatar-input"
             :placeholder="$t('addEditUser.changePhoto')"
             class="avatar-input"
             type="text"
@@ -94,8 +96,7 @@ export default defineComponent({
 
     async function handleSave() {
       let actionSuccess = false;
-      if (intern.value.first_name == "" || intern.value.first_name == "")
-        return;
+      if (intern.value.first_name == "" || intern.value.last_name == "") return;
       if (intern.value.id == "") {
         actionSuccess = await internsStore.addNewIntern(intern.value);
       } else {
