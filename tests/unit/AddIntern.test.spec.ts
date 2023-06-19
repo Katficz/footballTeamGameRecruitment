@@ -42,10 +42,11 @@ describe("test add edit interns", () => {
       },
     });
 
-    const firstNameInputValue = wrapper.get('[data-test="editButton"]').text();
-    const secondNameInputValue = wrapper.get('[data-test="editButton"]').text();
-
-    expect(firstNameInputValue).toBe(mockedIntern.first_name);
-    expect(wrapper).toBeTruthy();
+    const firstNameInputValue = wrapper.find('[data-test="first-name-input"]')
+      .element as HTMLInputElement;
+    const secondNameInputValue = wrapper.find('[data-test="last-name-input"]')
+      .element as HTMLInputElement;
+    expect(firstNameInputValue).toContain(mockedIntern.first_name);
+    expect(secondNameInputValue).toContain(mockedIntern.last_name);
   });
 });
