@@ -1,5 +1,10 @@
 import { defineStore } from "pinia";
-import { deleteInternById, fetchInterns } from "../api/interns.api";
+import {
+  addNewIntern,
+  deleteInternById,
+  fetchInterns,
+  updateIntern,
+} from "../api/interns.api";
 
 interface State {
   internsList: Intern[];
@@ -39,6 +44,22 @@ export const useInternsStore = defineStore("interns", {
       );
       if (deletedIndex == -1) return;
       this.internsList.splice(deletedIndex, 1);
+    },
+    async addNewIntern(newIntern: Intern) {
+      const addedIntern = await addNewIntern(newIntern);
+      if (!addedIntern) return false;
+      this.internsList.unshift(addedIntern);
+      return true;
+    },
+    async editIntern(editedIntern: Intern) {
+      const updatedIntern = await updateIntern(editedIntern);
+      if (!updatedIntern) return false;
+      const updatedInternIndex = this.internsList.findIndex(
+        (intern) => intern.id == editedIntern.id
+      );
+      if (updatedInternIndex == -1) return true;
+      this.internsList[updatedInternIndex] = updatedIntern;
+      return true;
     },
   },
 });

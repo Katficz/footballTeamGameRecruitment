@@ -1,6 +1,5 @@
 import axios from "axios";
 import { AxiosResponse } from "axios";
-import { useInternsStore } from "../store/interns.store";
 
 const baseBackendUrl = "https://reqres.in/api";
 
@@ -33,7 +32,7 @@ async function fetchInternById(id: number): Promise<Intern | null> {
   }
 
   if (!response) return null;
-  return response.data;
+  return response.data.data;
 }
 
 async function deleteInternById(id: string): Promise<true | false> {
@@ -49,4 +48,39 @@ async function deleteInternById(id: string): Promise<true | false> {
   return response.status === 204;
 }
 
-export { fetchInterns, fetchInternById, deleteInternById };
+async function addNewIntern(newIntern: Intern): Promise<Intern | null> {
+  let response: AxiosResponse | null = null;
+
+  try {
+    response = await axios.post(`${baseBackendUrl}/users`, newIntern);
+  } catch (fetchInternsError) {
+    console.error(fetchInternsError);
+  }
+
+  if (!response) return null;
+  return response.data;
+}
+
+async function updateIntern(newIntern: Intern): Promise<Intern | null> {
+  let response: AxiosResponse | null = null;
+
+  try {
+    response = await axios.put(
+      `${baseBackendUrl}/users${newIntern.id}`,
+      newIntern
+    );
+  } catch (fetchInternsError) {
+    console.error(fetchInternsError);
+  }
+
+  if (!response) return null;
+  return response.data;
+}
+
+export {
+  fetchInterns,
+  fetchInternById,
+  deleteInternById,
+  addNewIntern,
+  updateIntern,
+};

@@ -11,7 +11,7 @@
         />
         <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
       </span>
-      <button class="add-button float-right">
+      <button class="add-button float-right" @click="$emit('add')">
         <font-awesome-icon :icon="['fas', 'plus']" />
         {{ $t("usersList.addUser") }}
       </button>

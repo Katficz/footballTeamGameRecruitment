@@ -6,6 +6,7 @@
         <div class="input-wrapper">
           <label for="firstName">{{ $t("addEditUser.firstName") }}</label>
           <input
+            maxlength="40"
             class="text-data-input"
             name="firstName"
             type="text"
@@ -15,6 +16,7 @@
         <div class="input-wrapper">
           <label for="lastName">{{ $t("addEditUser.lastName") }}</label>
           <input
+            maxlength="40"
             class="text-data-input"
             name="lastName"
             type="text"
@@ -22,7 +24,7 @@
           />
         </div>
         <div class="button-wrapper">
-          <button class="save-button">
+          <button class="save-button" @click="handleSave">
             {{ $t("addEditUser.updateDetails") }}
           </button>
         </div>
@@ -52,11 +54,14 @@ import MainTitle from "@/components/MainTitle.vue";
 import MainCard from "@/components/MainCard.vue";
 import { useRoute } from "vue-router";
 import { fetchInternById } from "@/modules/interns/api/interns.api";
+import { useInternsStore } from "../store/interns.store";
+import router from "@/router";
 
 export default defineComponent({
   name: "AddEditInternPage",
   components: { MainTitle, MainCard },
   setup() {
+    const internsStore = useInternsStore();
     const intern = ref({
       id: "",
       first_name: "",
@@ -72,14 +77,27 @@ export default defineComponent({
       const fetchedIntern = await fetchInternById(parseInt(queryId));
       if (!fetchedIntern) return;
       intern.value = {
-        id: fetchedIntern.id,
+        id: fetchedIntern.id || "",
         first_name: fetchedIntern.first_name,
         last_name: fetchedIntern.last_name,
         avatar: fetchedIntern.avatar,
       };
     }
 
+    async function handleSave() {
+      let actionSuccess = false;
+      if (intern.value.first_name == "" || intern.value.first_name == "")
+        return;
+      if (intern.value.id == "") {
+        actionSuccess = await internsStore.addNewIntern(intern.value);
+      } else {
+        actionSuccess = await internsStore.editIntern(intern.value);
+      }
+      if (actionSuccess) router.push({ name: "InternsList" });
+    }
+
     return {
+      handleSave,
       intern,
     };
   },
