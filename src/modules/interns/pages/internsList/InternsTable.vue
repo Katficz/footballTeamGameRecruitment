@@ -11,10 +11,12 @@
         />
         <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
       </span>
-      <button class="add-button float-right" @click="$emit('add')">
-        <font-awesome-icon :icon="['fas', 'plus']" />
-        {{ $t("usersList.addUser") }}
-      </button>
+      <nice-button
+        class="float-right"
+        @click="$emit('add')"
+        :text="$t('usersList.addUser')"
+        :icon="['fas', 'plus']"
+      />
     </div>
     <table>
       <tr class="row-header text-left">
@@ -31,12 +33,20 @@
         <td class="avatar-col">
           <img class="image-cell" :src="item.avatar" alt="alternatetext" />
         </td>
-        <td class="fullName-col">{{ item.fullName }}</td>
+        <td class="fullName-col" data-test="name-col">{{ item.fullName }}</td>
         <td class="actions-col">
-          <button @click="$emit('edit', item.id)" class="icon-button">
+          <button
+            data-test="editButton"
+            @click="$emit('edit', item.id)"
+            class="icon-button"
+          >
             <font-awesome-icon :icon="['fas', 'pen-to-square']" />
           </button>
-          <button @click="$emit('delete', item.id)" class="icon-button">
+          <button
+            data-test="deleteButton"
+            @click="$emit('delete', item.id)"
+            class="icon-button"
+          >
             <font-awesome-icon :icon="['fas', 'trash']" />
           </button>
         </td>
@@ -47,6 +57,7 @@
 
 <script lang="ts">
 import { PropType, defineComponent, ref, watch } from "vue";
+import NiceButton from "@/components/NiceButton.vue";
 
 export default defineComponent({
   name: "InternsTable",
@@ -59,7 +70,7 @@ export default defineComponent({
       default: () => [],
     },
   },
-  components: {},
+  components: { NiceButton },
   setup(props) {
     const searchValue = ref("");
 

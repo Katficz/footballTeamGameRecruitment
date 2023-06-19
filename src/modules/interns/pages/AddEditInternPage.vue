@@ -6,6 +6,7 @@
         <div class="input-wrapper">
           <label for="firstName">{{ $t("addEditUser.firstName") }}</label>
           <input
+            data-test="first-name-input"
             maxlength="40"
             class="text-data-input"
             name="firstName"
@@ -16,6 +17,7 @@
         <div class="input-wrapper">
           <label for="lastName">{{ $t("addEditUser.lastName") }}</label>
           <input
+            data-test="last-name-input"
             maxlength="40"
             class="text-data-input"
             name="lastName"
@@ -24,9 +26,15 @@
           />
         </div>
         <div class="button-wrapper">
-          <button class="save-button" @click="handleSave">
-            {{ $t("addEditUser.updateDetails") }}
-          </button>
+          <nice-button
+            class="save-button save-button"
+            @click="handleSave"
+            :text="
+              intern.id
+                ? $t('addEditUser.updateDetails')
+                : $t('addEditUser.submitUser')
+            "
+          />
         </div>
       </main-card>
 
@@ -52,14 +60,14 @@ import { defineComponent, ref } from "vue";
 //components
 import MainTitle from "@/components/MainTitle.vue";
 import MainCard from "@/components/MainCard.vue";
-import { useRoute } from "vue-router";
+import NiceButton from "@/components/NiceButton.vue";
+import { useRoute, useRouter } from "vue-router";
 import { fetchInternById } from "@/modules/interns/api/interns.api";
 import { useInternsStore } from "../store/interns.store";
-import router from "@/router";
 
 export default defineComponent({
   name: "AddEditInternPage",
-  components: { MainTitle, MainCard },
+  components: { MainTitle, MainCard, NiceButton },
   setup() {
     const internsStore = useInternsStore();
     const intern = ref({
@@ -93,7 +101,7 @@ export default defineComponent({
       } else {
         actionSuccess = await internsStore.editIntern(intern.value);
       }
-      if (actionSuccess) router.push({ name: "InternsList" });
+      if (actionSuccess) useRouter().push({ name: "InternsList" });
     }
 
     return {

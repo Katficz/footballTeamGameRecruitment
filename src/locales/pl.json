@@ -13,6 +13,7 @@
     "firstName": "First Name",
     "lastName": "Last Name",
     "updateDetails": "Update Details",
+    "submitUser": "Submit User",
     "changePhoto": "Change Photo"
   }
 }

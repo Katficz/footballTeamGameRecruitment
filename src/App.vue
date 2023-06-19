@@ -1,7 +1,7 @@
 <template>
   <nav>
-    <router-link to="/dodaj">add</router-link> |
-    <router-link to="/lista">lista</router-link>
+    <router-link to="/dodaj">{{ $t("pageTitles.addIntern") }}</router-link> |
+    <router-link to="/lista">{{ $t("pageTitles.internsList") }}</router-link>
   </nav>
   <div class="main-container">
     <router-view />
