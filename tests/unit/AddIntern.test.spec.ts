@@ -18,7 +18,7 @@ const route = {
 
 jest.mock("@/modules/interns/api/interns.api", () => {
   return {
-    fetchInternById: (id: string) => mockedIntern,
+    fetchInternById: () => mockedIntern,
     updateIntern: () => false,
   };
 });
